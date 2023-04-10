@@ -9,12 +9,6 @@ import os
 os.environ["OPENAI_API_KEY"] = ''
 vectordb_directory = 'db'
 
-# load the text file from disk
-loader = TextLoader('My Clippings.txt')
-doc = loader.load()
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000)
-docs = text_splitter.split_documents(doc)
-
 # initialize the embeddings
 embeddings = OpenAIEmbeddings()
 
@@ -22,6 +16,13 @@ embeddings = OpenAIEmbeddings()
 if not os.path.exists(vectordb_directory):
     # create and save the index from the docs to the disk
     print("Save the index to the disk")
+
+    # load the text file from disk, split the file into chunks 
+    # and create indexes from embeddings
+    loader = TextLoader('My Clippings.txt')
+    doc = loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000)
+    docs = text_splitter.split_documents(doc)
     vectordb = Chroma.from_documents(docs,
                                      embeddings,
                                      persist_directory=vectordb_directory)
