@@ -8,6 +8,8 @@ The sample was built usig ChatGPT (GPT4) and you can view the entire conversatio
 
 Here is the demo: 
 
+https://user-images.githubusercontent.com/7882052/231063129-8f32dca8-bd93-4a8e-a68e-acbc1f5b152e.mp4
+
 
 ## Question answering over docs
 The simple python script uses [Langchain](https://python.langchain.com/en/latest/index.html), loads a text file, creates indexes (from OpenAI embeddings) and then allows you to [ask questions on your document data](https://python.langchain.com/en/latest/use_cases/question_answering.html). For this sample, I am using my Kindle Highlights file which you can find in your Kindle. I am using [Chroma storage](https://www.trychroma.com/) to persist the embeddings once created. 
