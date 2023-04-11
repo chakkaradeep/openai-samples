@@ -4,7 +4,8 @@ I am exploring the possibilities of OpenAI and what we can build with it. This r
 ## OpenAI Python Sample
 This is beginner sample on how to interact with OpenAI APIs, specifically the [Completions API](https://platform.openai.com/docs/api-reference/completions). It builds a simple python chat bot but does not retain or remember conversation history. 
 
-The sample was built usig ChatGPT (GPT4) and you can view the entire conversation here. This is a good example on how you can use [chain of thought prompting](https://learnprompting.org/docs/intermediate/chain_of_thought) so it can help you build great apps.
+The sample was **built from scratch using ChatGPT (GPT4)**. 
+You can view the entire [conversation here](https://github.com/chakkaradeep/openai-samples/blob/f255c95df4fef1cec228d64fa920a45f596608b3/OpenAI%20Python%20Sample/gpt4_chat_build_python_sample.md). This is a good example on how you can use [chain of thought prompting](https://learnprompting.org/docs/intermediate/chain_of_thought) so it can help you build great apps.
 
 Here is the demo: 
 
