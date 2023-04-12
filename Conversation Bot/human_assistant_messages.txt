@@ -1,0 +1,6 @@
+Human: where is Seattle?
+Assistant:  Seattle is located in the state of Washington in the United States.
+Human: what activities i can do therE?
+Assistant:  Seattle is a great city for outdoor activities. You can explore the city's parks, go hiking, biking, kayaking, and more. There are also plenty of cultural attractions, such as the Space Needle, the Seattle Art Museum, and the Seattle Aquarium.
+Human: what part of US region is it?
+Assistant:  Seattle is located in the Pacific Northwest region of the United States. It is bordered by the states of Oregon to the south, Idaho to the east, and British Columbia, Canada to the north.
