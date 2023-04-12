@@ -2,7 +2,7 @@
 I am exploring the possibilities of OpenAI and what we can build with it. This repository has sample scripts or apps that I am using to learn OpenAI and other AI topics.
 
 ## Conversation Bot
-This is a sample bot that uses [Langchain](https://python.langchain.com/en/latest/index.html) to construct the prompt, an LLM chain, and an in-memory buffer to store the history. The sample uses [ConversationBufferMemory](https://python.langchain.com/en/latest/modules/memory/types/buffer.html) which allows for storing of messages and then extracts the messages in a variable. Since we utilize a history, the bot is able to remember the messages and respond appropriately. You will type *exit* to exit the bot and you will have an option to save the entire conversation history.
+This is a sample bot that uses [Langchain](https://python.langchain.com/en/latest/index.html) to construct the [prompt template](https://python.langchain.com/en/latest/modules/prompts/prompt_templates/getting_started.html), an [LLM chain](https://python.langchain.com/en/latest/modules/chains/getting_started.html), and [memory](https://python.langchain.com/en/latest/modules/memory/getting_started.html) to store the history. The sample uses [ConversationBufferMemory](https://python.langchain.com/en/latest/modules/memory/types/buffer.html) which allows for storing of messages and then extracts the messages in a variable. Since we utilize a history, the bot is able to remember the messages and respond appropriately. You will type *exit* to exit the bot and you will have an option to save the entire conversation history.
 
 Here is the demo:
 
