@@ -4,7 +4,7 @@ I am exploring the possibilities of OpenAI and what we can build with it. This r
 ## Using Agents and Tools
 LLMs are great, but they lack certain information. There is no continuous learning. So, when you ask the LLM about current events, or even as simple as 'today's date', they cannot help you. However, in some instances, if you give them the context, like *'today's date is April 18th, 2023'*, they might be helpful or provide access to other tools to seek answers, they might be helpful. [Langchain](https://python.langchain.com/en/latest/index.html)'s [Agent](https://python.langchain.com/en/latest/modules/agents.html) and [Tools](https://python.langchain.com/en/latest/modules/agents/tools.html) help you exactly with that. 
 
-In this sample, we use a tool available in langchain library called SerpApi that searches internet and a custom tool that parses date from NLU string. The DateParser tool calls OpenAI, but this time with the date context. We provide the context of today's date which helps the model to answer further questions on date. 
+In this sample, we use a tool available in langchain library called SerpApi that searches internet and a custom tool that parses date from strings. The DateParser tool calls OpenAI, but this time with the date context. We provide the context of today's date which helps the model to answer further questions on date. 
 
 ```python
 class DateParserTool(BaseTool):
