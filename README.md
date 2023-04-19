@@ -1,6 +1,55 @@
 # openai-samples
 I am exploring the possibilities of OpenAI and what we can build with it. This repository has sample scripts or apps that I am using to learn OpenAI and other AI topics.
 
+## Using Agents and Tools
+LLMs are great, but they lack certain information. There is no continuous learning. So, when you ask the LLM about current events, or even as simple as 'today's date', they will not be able to help you. However, in some instances, if you give them the context, like *'today's date is April 18th, 2023'*, they might be helpful or provide access to other tools to seek answers, they might be helpful. [Langchain](https://python.langchain.com/en/latest/index.html)'s [Agent](https://python.langchain.com/en/latest/modules/agents.html) and [Tools](https://python.langchain.com/en/latest/modules/agents/tools.html) help you exactly with that. 
+
+In this sample, we use a tool available in langchain library called SerpApi that searches internet and a custom tool that parses date from NLU string. The DateParser tool calls OpenAI, but this time with the date context. We provide the context of today's date which helps the model to answer further questions on date. 
+
+```python
+class DateParserTool(BaseTool):
+    """
+    Custom Tool by subclassing the BaseTool class.
+    DateParserTool constructs another OpenAI call with the date context.
+    This is a great example of how you can inject context into OpenAI through chaining.
+    """
+    name = 'Date Parser'
+    description = 'Useful to infer dates from natural language strings.'
+
+    def _run(self, tool_input: str) -> str:
+        prompt_template = 'Today is {date_today}. Answer the following in Long Date format: {input}'
+        prompt = PromptTemplate(template=prompt_template, input_variables=['date_today', 'input'])
+        date_today = date.today()
+        llm_chain = LLMChain(prompt=prompt,
+                             llm=OpenAI(temperature=0.3, max_tokens=100),
+                             verbose=True)
+        return llm_chain.run(date_today=date_today.today(),
+                             input=tool_input)
+
+    async def _arun(self, tool_input: str) -> str:
+        raise NotImplementedError('DateParser does not support async')
+```
+
+So, now if we query OpenAI with a prompt:
+
+```
+Charlie bought his phone today. His phone will be out of warranty in a month. Reply when the warranty expires along with a Hollywood movie name releasing on that day.
+```
+The Agent will do the following:
+1. It needs to know about *'a month from today'* by using the custom DateParser tool.
+2. Once *'a month from today'* is known, it now needs to know *'hollywood movies releasing in a month'* by using the SerpApi Search tool.
+4. Once '*'a month from today'*' and *'hollywood movies releasing in a month'* is known, it can now construct the final answer.
+
+```
+The warranty for Charlie's phone expires on May 18, 2023 and a Hollywood movie releasing on that day is The Little Mermaid.
+```
+
+Here is the demo:
+
+https://user-images.githubusercontent.com/7882052/232971654-7260a727-1f3b-4edd-b52f-9923394aa506.mp4
+
+
+
 ## Conversation Bot
 This is a sample bot that uses [Langchain](https://python.langchain.com/en/latest/index.html) to construct the [prompt template](https://python.langchain.com/en/latest/modules/prompts/prompt_templates/getting_started.html), an [LLM chain](https://python.langchain.com/en/latest/modules/chains/getting_started.html), and [memory](https://python.langchain.com/en/latest/modules/memory/getting_started.html) to store the history. The sample uses [ConversationBufferMemory](https://python.langchain.com/en/latest/modules/memory/types/buffer.html) which allows for storing of messages in memory and then extracts the messages in a variable. Since we utilize a history, the bot is able to remember the messages and respond appropriately. You will type *exit* to exit the bot and you will have an option to save the entire conversation history.
 
