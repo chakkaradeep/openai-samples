@@ -1,6 +1,25 @@
 # openai-samples
 I am exploring the possibilities of OpenAI and what we can build with it. This repository has sample scripts or apps that I am using to learn OpenAI and other AI topics.
 
+## Q&A chat with your PDFs
+With LLMs being highly proficient in inferring tasks based on given contexts, it has become feasible to provide your data as context to the model and obtain responses to queries based on that context. Essentially, ChatGPT performs this function. In this example, we offer PDF content as context to the model for a specific query, allowing it to generate a response. To accomplish this, follow these steps:
+- Generate [OpenAI embeddings](https://platform.openai.com/docs/guides/embeddings) for the PDF files.
+    - To generate embeddings, we [divide the PDF content into smaller segments](https://python.langchain.com/en/latest/modules/indexes/document_loaders/examples/pdf.html) and subsequently create embeddings for each segment. This approach enables us to efficiently manage and process large PDF documents.
+- Store the embeddings in a [Chroma](https://www.trychroma.com/) [vector database](https://python.langchain.com/en/latest/modules/indexes/vectorstores/examples/chroma.html).
+- Conduct a similarity search on the vector database using the query to retrieve pertinent embeddings.
+- Create an [LLM chain to perform a retrieval search on PDF contents](https://python.langchain.com/en/latest/modules/chains/index_examples/vector_db_qa.html).
+
+Additionally, this example produces PDF summaries, which are valuable in determining relevant questions to pose to the chatbot.
+
+The demo uses [Langchain](https://python.langchain.com/en/latest/index.html) to coordinate various tasks, such as generating PDF summaries, creating embeddings, storing and loading embeddings in a vector store, and executing query retrieval from your PDF documents.
+
+Here is the demo:
+
+
+https://user-images.githubusercontent.com/7882052/234067096-51220921-7808-42e3-b97a-468d45b8a8d9.mp4
+
+
+
 ## Using Agents and Tools
 LLMs are great, but they lack certain information. There is no continuous learning. So, when you ask the LLM about current events, or even as simple as 'today's date', they cannot help you. However, in some instances, if you give them the context, like *'today's date is April 18th, 2023'*, they might be helpful or provide access to other tools to seek answers, they might be helpful. [Langchain](https://python.langchain.com/en/latest/index.html)'s [Agent](https://python.langchain.com/en/latest/modules/agents.html) and [Tools](https://python.langchain.com/en/latest/modules/agents/tools.html) help you exactly with that. 
 
